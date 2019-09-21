@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigation} from 'react-navigation-hooks';
 
 import {
   Container,
@@ -11,6 +12,7 @@ import {
 } from 'native-base';
 
 export default function FormLogin() {
+  const {navigate} = useNavigation();
   return (
     <Container style={{margin: 20}}>
       <View
@@ -33,10 +35,10 @@ export default function FormLogin() {
           <Text style={{textAlign: 'center'}}>Logo Name</Text>
         </View>
         <View>
-          <Button full primary>
+          <Button full primary onPress={() => navigate('todoList')}>
             <Text>Sign in</Text>
           </Button>
-          <Button full secondary>
+          <Button full secondary onPress={() => navigate('todoDetail')}>
             <Text>Register</Text>
           </Button>
         </View>
