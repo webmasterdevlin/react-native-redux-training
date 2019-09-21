@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchTodos} from '../todo-actions';
+import {fetchTodos, removeTodo} from '../todo-actions';
 import {StyleSheet, Alert} from 'react-native';
 import {
   Container,
@@ -47,7 +47,7 @@ export default function TodoList() {
                   justifyContent: 'space-between',
                 }}>
                 <Text style={{fontSize: 24}}>{t.title}</Text>
-                <Button danger onPress={() => Alert.alert('Deleting...', 'OK')}>
+                <Button danger onPress={() => dispatch(removeTodo(t.id))}>
                   <Text>Delete</Text>
                 </Button>
               </ListItem>
