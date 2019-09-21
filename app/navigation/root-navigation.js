@@ -5,17 +5,17 @@ import TodoList from '../todos/screens/TodoList';
 import FormLogin from '../auth/screens/FormLogin';
 const MainNavigator = createStackNavigator(
   {
+    formLogin: {
+      screen: FormLogin,
+    },
     todoList: {
       screen: TodoList,
       navigationOptions: () => ({
-        title: 'RN Redux',
+        title: 'Todo List',
       }),
     },
     todoDetail: {
       screen: TodoDetail,
-    },
-    formLogin: {
-      screen: FormLogin,
     },
   },
   {

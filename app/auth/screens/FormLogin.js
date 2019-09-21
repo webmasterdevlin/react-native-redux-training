@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {useNavigation} from 'react-navigation-hooks';
 
 import {
   Container,
@@ -16,10 +17,7 @@ import {
 } from 'native-base';
 
 export default function FormLogin() {
-  const {logo} = useSelector(state => {
-    console.log('STATE: ', state);
-    return state.todoReducer;
-  });
+  const {navigate} = useNavigation();
   return (
     <Container style={{margin: 20}}>
       <View
@@ -39,21 +37,24 @@ export default function FormLogin() {
           </FormItem>
         </View>
         <View>
-          <Text style={{textAlign: 'center'}}>{logo}</Text>
+          <Text style={{textAlign: 'center'}}>Nothing</Text>
         </View>
         <View>
           <Button
             full
             primary
             onPress={() => {
-              const test = 23;
-              console.log('Here!', test);
-              debugger;
+              navigate('todoList');
             }}>
             <Text>Sign in</Text>
           </Button>
           <View style={{marginTop: 5, marginBottom: 5}} />
-          <Button full secondary>
+          <Button
+            full
+            secondary
+            onPress={() => {
+              navigate('todoDetail');
+            }}>
             <Text>Register</Text>
           </Button>
         </View>
