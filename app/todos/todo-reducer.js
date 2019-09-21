@@ -22,6 +22,9 @@ export const todoReducer = (state = initialState, action) => {
       return {...state, isLoading: true};
     case types.FETCH_TODOS_SUCCESS:
       return {...state, isLoading: false, todos: action.payload};
+    case types.FETCH_TODOS_FAIL:
+      return {...state, isLoading: false, error: action.payload};
+
     default:
       return state;
   }

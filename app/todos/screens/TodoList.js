@@ -4,16 +4,15 @@ import {fetchTodos} from '../todo-actions';
 import {StyleSheet, Alert} from 'react-native';
 import {
   Container,
+  Footer,
   Content,
   View,
+  Text,
   Button,
   Icon,
-  Spinner,
   SwipeRow,
   Fab,
-  Body,
-  Footer,
-  Text,
+  Spinner,
 } from 'native-base';
 
 export default function TodoList() {
@@ -32,17 +31,33 @@ export default function TodoList() {
 
   return (
     <Container>
-      <Content scrollEnable>
+      <Content style={{margin: 20}} scrollEnable>
         {isLoading ? (
           <Spinner color="blue" />
         ) : (
           todos.map(t => (
-            <View key={t.id}>
-              <Text>{t.title}</Text>
+            <View
+              key={t.id}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 20,
+                marginBottom: 20,
+              }}>
+              <Text style={{fontSize: 24}}>{t.title}</Text>
+              <Button danger onPress={() => Alert.alert('Deleting...', 'OK')}>
+                <Text>Delete</Text>
+              </Button>
             </View>
           ))
         )}
       </Content>
+      <Footer style={styles.footer}>
+        <Text style={styles.footerText} note>
+          Footer
+        </Text>
+      </Footer>
     </Container>
   );
 }
