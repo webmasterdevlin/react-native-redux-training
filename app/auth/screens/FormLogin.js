@@ -1,18 +1,25 @@
-import React from 'react';
-import {useNavigation} from 'react-navigation-hooks';
+import React, {useEffect, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {
   Container,
+  Header,
   Button,
   Text,
+  Body,
+  Form,
   Item as FormItem,
   Input,
   Label,
+  Title,
   View,
 } from 'native-base';
 
 export default function FormLogin() {
-  const {navigate} = useNavigation();
+  const {logo} = useSelector(state => {
+    console.log('STATE: ', state);
+    return state.todoReducer;
+  });
   return (
     <Container style={{margin: 20}}>
       <View
@@ -32,13 +39,21 @@ export default function FormLogin() {
           </FormItem>
         </View>
         <View>
-          <Text style={{textAlign: 'center'}}>Logo Name</Text>
+          <Text style={{textAlign: 'center'}}>{logo}</Text>
         </View>
         <View>
-          <Button full primary onPress={() => navigate('todoList')}>
+          <Button
+            full
+            primary
+            onPress={() => {
+              const test = 23;
+              console.log('Here!', test);
+              debugger;
+            }}>
             <Text>Sign in</Text>
           </Button>
-          <Button full secondary onPress={() => navigate('todoDetail')}>
+          <View style={{marginTop: 5, marginBottom: 5}} />
+          <Button full secondary>
             <Text>Register</Text>
           </Button>
         </View>
