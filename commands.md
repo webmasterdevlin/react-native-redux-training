@@ -3,7 +3,7 @@ $ npx react-native init MyDemo
 ```
 
 ```sh
-$ npm i native-base react-native-gesture-handler react-navigation react-native-reanimated axios react react-redux redux redux-saga redux-thunk reselect
+$ npm i native-base react-native-gesture-handler react-navigation react-navigation-stacks react-navigation-hooks react-native-reanimated axios react react-redux redux redux-saga redux-thunk reselect
 ```
 
 ```sh
