@@ -13,6 +13,8 @@ import {
   SwipeRow,
   Fab,
   Spinner,
+  List,
+  ListItem,
 } from 'native-base';
 
 export default function TodoList() {
@@ -32,26 +34,26 @@ export default function TodoList() {
   return (
     <Container>
       <Content style={{margin: 20}} scrollEnable>
-        {isLoading ? (
-          <Spinner color="blue" />
-        ) : (
-          todos.map(t => (
-            <View
-              key={t.id}
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 20,
-                marginBottom: 20,
-              }}>
-              <Text style={{fontSize: 24}}>{t.title}</Text>
-              <Button danger onPress={() => Alert.alert('Deleting...', 'OK')}>
-                <Text>Delete</Text>
-              </Button>
-            </View>
-          ))
-        )}
+        <List>
+          {isLoading ? (
+            <Spinner color="blue" />
+          ) : (
+            todos.map(t => (
+              <ListItem
+                key={t.id}
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <Text style={{fontSize: 24}}>{t.title}</Text>
+                <Button danger onPress={() => Alert.alert('Deleting...', 'OK')}>
+                  <Text>Delete</Text>
+                </Button>
+              </ListItem>
+            ))
+          )}
+        </List>
       </Content>
       <Footer style={styles.footer}>
         <Text style={styles.footerText} note>
