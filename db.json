@@ -24,5 +24,27 @@
       "id": "645gg",
       "title": "netflix"
     }
+  ],
+  "foods": [
+    {
+      "id": "4389fhous",
+      "name": "beef stew"
+    },
+    {
+      "id": "re43gre",
+      "name": "spring rolls"
+    },
+    {
+      "id": "54g54gr3t",
+      "name": "bbq chicken"
+    },
+    {
+      "id": "34gfsf43",
+      "name": "salmon sandwich"
+    },
+    {
+      "id": "4yrt65y65ye",
+      "name": "gelato"
+    }
   ]
 }
