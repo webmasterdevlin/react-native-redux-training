@@ -10,10 +10,15 @@ import {
   Icon,
   Button,
 } from 'native-base';
+import {useNavigation} from 'react-navigation-hooks';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchFoods, removeFood} from '../food-actions';
 
 const FoodList = () => {
+  /* React Navigation */
+  const {navigate} = useNavigation();
+
+  /* Redux*/
   const dispatch = useDispatch();
   const {foods, isLoading} = useSelector(state => state.foodReducer);
 
@@ -37,9 +42,17 @@ const FoodList = () => {
                   justifyContent: 'space-between',
                 }}>
                 <Text>{f.name}</Text>
-                <Button danger onPress={() => dispatch(removeFood(f.id))}>
-                  <Text>Delete</Text>
-                </Button>
+                <View style={{flex: 0, flexDirection: 'row'}}>
+                  <Button
+                    style={{marginRight: 5}}
+                    primary
+                    onPress={() => navigate('foodDetail', {id: f.id})}>
+                    <Text>Detail</Text>
+                  </Button>
+                  <Button danger onPress={() => dispatch(removeFood(f.id))}>
+                    <Text>Delete</Text>
+                  </Button>
+                </View>
               </ListItem>
             ))
           )}

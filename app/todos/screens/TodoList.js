@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchTodos, removeTodo} from '../todo-actions';
 import {StyleSheet, Alert} from 'react-native';
+import {useNavigation} from 'react-navigation-hooks';
 import {
   Container,
   Footer,
@@ -18,6 +19,9 @@ import {
 } from 'native-base';
 
 export default function TodoList() {
+  /* React Navigation */
+  const {navigate} = useNavigation();
+
   /* part of Redux pattern */
   const dispatch = useDispatch();
   const {todos, isLoading} = useSelector(state => state.todoReducer);
@@ -43,9 +47,17 @@ export default function TodoList() {
                   justifyContent: 'space-between',
                 }}>
                 <Text style={{fontSize: 24}}>{t.title}</Text>
-                <Button danger onPress={() => dispatch(removeTodo(t.id))}>
-                  <Text>Delete</Text>
-                </Button>
+                <View style={{flex: 0, flexDirection: 'row'}}>
+                  <Button
+                    style={{marginRight: 5}}
+                    primary
+                    onPress={() => navigate('todoDetail', {id: t.id})}>
+                    <Text>Detail</Text>
+                  </Button>
+                  <Button danger onPress={() => dispatch(removeTodo(t.id))}>
+                    <Text>Delete</Text>
+                  </Button>
+                </View>
               </ListItem>
             ))
           )}
