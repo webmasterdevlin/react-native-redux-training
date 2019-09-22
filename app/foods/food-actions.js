@@ -27,3 +27,21 @@ export const fetchFoods = () => {
     }
   };
 };
+
+export const removeFood = id => {
+  return async dispatch => {
+    dispatch({
+      type: REMOVE_FOOD_REQUEST,
+    });
+    try {
+      await deleteFood(id);
+      dispatch({type: REMOVE_FOOD_SUCCESS, payload: id});
+    } catch (e) {
+      console.log(e.message);
+      dispatch({
+        type: REMOVE_FOOD_FAIL,
+        payload: e.message,
+      });
+    }
+  };
+};

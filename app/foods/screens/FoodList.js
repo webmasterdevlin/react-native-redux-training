@@ -11,7 +11,7 @@ import {
   Button,
 } from 'native-base';
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchFoods} from '../food-actions';
+import {fetchFoods, removeFood} from '../food-actions';
 
 const FoodList = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const FoodList = () => {
                   justifyContent: 'space-between',
                 }}>
                 <Text>{f.name}</Text>
-                <Button danger onPress={() => console.log('ID: ', f.id)}>
+                <Button danger onPress={() => dispatch(removeFood(f.id))}>
                   <Text>Delete</Text>
                 </Button>
               </ListItem>
