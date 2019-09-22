@@ -73,7 +73,7 @@ export default function TodoList() {
   };
 
   return (
-    <Container>
+    <Container style={{backgroundColor: '#EAF2F5'}}>
       <View style={{marginLeft: 20, marginRight: 20}}>
         <Item floatingLabel>
           <Label>what's new</Label>
