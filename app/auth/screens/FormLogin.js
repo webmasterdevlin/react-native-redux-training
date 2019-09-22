@@ -53,7 +53,7 @@ export default function FormLogin() {
             full
             secondary
             onPress={() => {
-              navigate('todoDetail');
+              navigate('foodList');
             }}>
             <Text>Register</Text>
           </Button>

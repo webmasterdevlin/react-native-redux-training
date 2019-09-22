@@ -28,6 +28,7 @@ export default function TodoList() {
   }, []);
 
   const loadTodos = async () => {
+    debugger;
     dispatch(await fetchTodos());
   };
 
