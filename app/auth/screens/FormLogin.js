@@ -25,7 +25,7 @@ export default function FormLogin() {
           <Text style={{textAlign: 'center'}}>LOGO</Text>
         </View>
 
-        <View>
+        <View style={{margin: 30}}>
           <FormItem floatingLabel>
             <Label>Email</Label>
             <Input />
@@ -36,16 +36,19 @@ export default function FormLogin() {
           </FormItem>
           <Button
             full
+            rounded
             primary
             onPress={() => {
               navigate('todoList');
             }}>
             <Text>Todos</Text>
           </Button>
-          <View style={{marginTop: 5, marginBottom: 5}} />
+          <View style={{marginTop: 10}} />
           <Button
             full
+            rounded
             secondary
+            bordered
             onPress={() => {
               navigate('foodList');
             }}>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchTodos, removeTodo} from '../todo-actions';
+import {fetchTodos, removeTodo, addTodo, updateTodo} from '../todo-actions';
 import {StyleSheet, Alert, RefreshControl} from 'react-native';
 import {useNavigation} from 'react-navigation-hooks';
 import {
@@ -12,10 +12,8 @@ import {
   Button,
   Item,
   Icon,
-  SwipeRow,
   Label,
   Input,
-  Fab,
   Spinner,
   List,
   ListItem,
@@ -60,17 +58,11 @@ export default function TodoList() {
   };
 
   const handleSaveOnPress = () => {
-    // Form submission
-    Alert.alert(todo.title, 'ok');
-
-    // TODO: dispatch action here
+    dispatch(addTodo(todo));
   };
 
   const handleUpdateOnPress = () => {
-    // Form submission
-    Alert.alert(todoToUpdate.title, 'OK');
-
-    // TODO: dispatch action here
+    dispatch(updateTodo(todoToUpdate));
   };
 
   return (

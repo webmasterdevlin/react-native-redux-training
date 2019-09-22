@@ -56,8 +56,8 @@ export const foodReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        foods: state.foods.map(f =>
-          f.id === action.payload.id ? action.payload : food,
+        foods: state.foods.map(food =>
+          food.id === action.payload.id ? action.payload : food,
         ),
       };
     case types.UPDATE_FOOD_FAIL:

@@ -1,6 +1,6 @@
 import {put, takeEvery, call} from 'redux-saga/effects';
 import {all} from '@redux-saga/core/effects';
-import {getTodos, deleteTodo} from './todo-service';
+import {getTodos, deleteTodo, postTodo, putTodo} from './todo-service';
 import {
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
@@ -8,6 +8,12 @@ import {
   REMOVE_TODO_REQUEST,
   REMOVE_TODO_SUCCESS,
   REMOVE_TODO_FAIL,
+  ADD_TODO_REQUEST,
+  ADD_TODO_SUCCESS,
+  ADD_TODO_FAIL,
+  UPDATE_TODO_REQUEST,
+  UPDATE_TODO_SUCCESS,
+  UPDATE_TODO_FAIL,
 } from './todo-actions';
 
 /*function generator implementations of Saga */
@@ -25,7 +31,6 @@ function* fetchingTodos() {
 }
 
 function* removingTodo({payload: id}) {
-  // pessimistic UI update
   try {
     yield deleteTodo(id);
     yield put({type: REMOVE_TODO_SUCCESS, payload: id});
@@ -33,6 +38,28 @@ function* removingTodo({payload: id}) {
     console.log(e.message);
     yield put({
       type: REMOVE_TODO_FAIL,
+      payload: e.message,
+    });
+  }
+}
+
+function* addingTodo({payload: newTodo}) {
+  try {
+    const {data} = yield postTodo(newTodo);
+    yield put({type: ADD_TODO_SUCCESS, payload: data});
+  } catch (e) {
+    console.log(e.message);
+    yield put({type: ADD_TODO_FAIL, payload: e.message});
+  }
+}
+
+function* updatingTodo({payload: updatedTodo}) {
+  try {
+    yield putTodo(updatedTodo);
+    yield put({type: UPDATE_TODO_SUCCESS, payload: updatedTodo});
+  } catch (e) {
+    yield put({
+      type: UPDATE_TODO_FAIL,
       payload: e.message,
     });
   }
@@ -47,7 +74,19 @@ function* watchRemovingTodo() {
   yield takeEvery(REMOVE_TODO_REQUEST, removingTodo);
 }
 
+function* watchAddingTodo() {
+  yield takeEvery(ADD_TODO_REQUEST, addingTodo);
+}
+function* watchUpdatingTodo() {
+  yield takeEvery(UPDATE_TODO_REQUEST, updatingTodo);
+}
+
 /* Saga sends all the watchers to the sagaMiddleware to run. */
 export function* todoSaga() {
-  yield all([watchFetchingTodos(), watchRemovingTodo()]);
+  yield all([
+    watchFetchingTodos(),
+    watchRemovingTodo(),
+    watchAddingTodo(),
+    watchUpdatingTodo(),
+  ]);
 }
