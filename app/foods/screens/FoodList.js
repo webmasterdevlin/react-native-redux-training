@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, Container, List} from 'native-base';
+import {View, Text, Container, List, Spinner, ListItem} from 'native-base';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchFoods} from '../food-actions';
 
@@ -13,7 +13,17 @@ const FoodList = () => {
 
   return (
     <Container>
-      <List></List>
+      <List>
+        {isLoading ? (
+          <Spinner color="crimson" />
+        ) : (
+          foods.map(f => (
+            <ListItem key={f.id}>
+              <Text>{f.name}</Text>
+            </ListItem>
+          ))
+        )}
+      </List>
     </Container>
   );
 };
