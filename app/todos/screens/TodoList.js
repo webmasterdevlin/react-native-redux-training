@@ -30,40 +30,43 @@ export default function TodoList() {
   const {todos, isLoading} = useSelector(state => state.todoReducer);
 
   /* React Hooks */
-  const [todo, setTodo] = useState({title: ''});
-  const [forEditing, setForEditing] = useState(0);
-  const [todoToUpdate, setTodoToUpdate] = useState({});
+  const [todo, setTodo] = useState({title: ''}); // The new todo that will be sent to the web API
+  const [forEditing, setForEditing] = useState(0); // For tracking which todo should be edited
+  const [todoToUpdate, setTodoToUpdate] = useState({}); // the todo you've picked to edit
+
   useEffect(() => {
     dispatch(fetchTodos());
   }, []);
 
-  const handleOnChangeInput = input => {
+  const handleInputOnChange = input => {
+    // To edit input
     const newTodo = {...todo};
     newTodo.title = input;
-
     setTodo(newTodo);
-    console.log(newTodo);
-    // TODO: dispatch the action here
-  };
-
-  const handleEditPress = todo => {
-    setForEditing(todo.id);
-    setTodoToUpdate(todo);
   };
 
   const handleEditOnChange = input => {
+    // To edit input
     const updatedTodo = {...todoToUpdate};
     updatedTodo.title = input;
     setTodoToUpdate(updatedTodo);
   };
 
+  const handleEditOnPress = todo => {
+    // For setup. No form submission here.
+    setForEditing(todo.id);
+    setTodoToUpdate(todo);
+  };
+
   const handleSaveOnPress = () => {
+    // Form submission
     Alert.alert(todo.title, 'ok');
 
     // TODO: dispatch action here
   };
 
   const handleUpdateOnPress = () => {
+    // Form submission
     Alert.alert(todoToUpdate.title, 'OK');
 
     // TODO: dispatch action here
@@ -74,7 +77,7 @@ export default function TodoList() {
       <View style={{marginLeft: 20, marginRight: 20}}>
         <Item floatingLabel>
           <Label>what's new</Label>
-          <Input onChangeText={handleOnChangeInput} />
+          <Input onChangeText={handleInputOnChange} />
         </Item>
         <Button success full onPress={() => handleSaveOnPress()}>
           <Text>Save</Text>
@@ -119,7 +122,7 @@ export default function TodoList() {
                       <Button
                         style={{marginRight: 5}}
                         warning
-                        onPress={() => handleEditPress(t)}>
+                        onPress={() => handleEditOnPress(t)}>
                         <Text>Edit</Text>
                       </Button>
                       <Button
