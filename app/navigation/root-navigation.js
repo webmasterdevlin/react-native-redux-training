@@ -36,7 +36,7 @@ const MainNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'formLogin',
+    initialRouteName: 'todoList',
   },
 );
 const RootNavigation = createAppContainer(MainNavigator);
