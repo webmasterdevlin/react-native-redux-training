@@ -10,8 +10,11 @@ import {
   View,
   Text,
   Button,
+  Item,
   Icon,
   SwipeRow,
+  Label,
+  Input,
   Fab,
   Spinner,
   List,
@@ -33,6 +36,15 @@ export default function TodoList() {
 
   return (
     <Container>
+      <View style={{marginLeft: 20, marginRight: 20}}>
+        <Item floatingLabel>
+          <Label>what's new</Label>
+          <Input />
+        </Item>
+        <Button success full onPress={() => Alert.alert('Saving..', 'ok')}>
+          <Text>Save</Text>
+        </Button>
+      </View>
       <Content style={{margin: 20}} scrollEnable>
         <List>
           {isLoading ? (
@@ -51,7 +63,7 @@ export default function TodoList() {
                   <Button
                     style={{marginRight: 5}}
                     primary
-                    onPress={() => navigate('todoDetail', {id: t.id})}>
+                    onPress={() => navigate('todoDetail', {id: t})}>
                     <Text>Detail</Text>
                   </Button>
                   <Button danger onPress={() => dispatch(removeTodo(t.id))}>
