@@ -8,3 +8,11 @@ export async function getFoods() {
 export async function deleteFood(id) {
   return await http.delete(`${BaseUrl.foods}${id}`);
 }
+
+export async function postFood(newFood) {
+  return await http.post(BaseUrl.foods, newFood);
+}
+
+export async function putFood(updateFood) {
+  return await http.put(`${BaseUrl.foods}${updateFood.id}`, updateFood);
+}

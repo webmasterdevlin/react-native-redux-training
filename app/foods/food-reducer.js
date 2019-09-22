@@ -33,6 +33,39 @@ export const foodReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
+    case types.ADD_FOOD_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case types.ADD_FOOD_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        foods: [...state.foods, action.payload],
+      };
+    case types.ADD_FOOD_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case types.UPDATE_FOOD_REQUEST:
+      return {...state, isLoading: true};
+    case types.UPDATE_FOOD_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        foods: state.foods.map(f =>
+          f.id === action.payload.id ? action.payload : food,
+        ),
+      };
+    case types.UPDATE_FOOD_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

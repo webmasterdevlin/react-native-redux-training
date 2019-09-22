@@ -19,7 +19,7 @@ import {
 } from 'native-base';
 import {useNavigation} from 'react-navigation-hooks';
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchFoods, removeFood} from '../food-actions';
+import {fetchFoods, removeFood, updateFood, addFood} from '../food-actions';
 
 const FoodList = () => {
   /* React Navigation */
@@ -60,17 +60,11 @@ const FoodList = () => {
   };
 
   const handleSaveOnPress = () => {
-    // Form submission
-    Alert.alert(food.name, 'ok');
-
-    // TODO: dispatch action here
+    dispatch(addFood(food));
   };
 
   const handleUpdateOnPress = () => {
-    // Form submission
-    Alert.alert(foodToUpdate.name, 'OK');
-
-    // TODO: dispatch action here
+    dispatch(updateFood(foodToUpdate));
   };
 
   return (

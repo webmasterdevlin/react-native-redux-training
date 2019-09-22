@@ -22,19 +22,18 @@ export default function FormLogin() {
           justifyContent: 'space-between',
         }}>
         <View>
+          <Text style={{textAlign: 'center'}}>LOGO</Text>
+        </View>
+
+        <View>
           <FormItem floatingLabel>
             <Label>Email</Label>
             <Input />
           </FormItem>
-          <FormItem floatingLabel>
+          <FormItem floatingLabel style={{marginBottom: 50}}>
             <Label>Password</Label>
             <Input secureTextEntry={true} />
           </FormItem>
-        </View>
-        <View>
-          <Text style={{textAlign: 'center'}}>Nothing</Text>
-        </View>
-        <View>
           <Button
             full
             primary
