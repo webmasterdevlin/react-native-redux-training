@@ -1,18 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
 import {useNavigation} from 'react-navigation-hooks';
 
 import {
   Container,
-  Header,
   Button,
   Text,
-  Body,
-  Form,
   Item as FormItem,
   Input,
   Label,
-  Title,
   View,
 } from 'native-base';
 
@@ -46,7 +41,7 @@ export default function FormLogin() {
             onPress={() => {
               navigate('todoList');
             }}>
-            <Text>Sign in</Text>
+            <Text>Todos</Text>
           </Button>
           <View style={{marginTop: 5, marginBottom: 5}} />
           <Button
@@ -55,7 +50,7 @@ export default function FormLogin() {
             onPress={() => {
               navigate('foodList');
             }}>
-            <Text>Register</Text>
+            <Text>Foods</Text>
           </Button>
         </View>
       </View>

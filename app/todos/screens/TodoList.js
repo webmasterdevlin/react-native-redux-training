@@ -24,13 +24,8 @@ export default function TodoList() {
 
   /* React Hooks */
   useEffect(() => {
-    loadTodos();
+    dispatch(fetchTodos());
   }, []);
-
-  const loadTodos = async () => {
-    debugger;
-    dispatch(await fetchTodos());
-  };
 
   return (
     <Container>

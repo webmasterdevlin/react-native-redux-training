@@ -1,5 +1,15 @@
 import React, {useEffect} from 'react';
-import {View, Text, Container, List, Spinner, ListItem} from 'native-base';
+import {
+  View,
+  Content,
+  Text,
+  Container,
+  List,
+  Spinner,
+  ListItem,
+  Icon,
+  Button,
+} from 'native-base';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchFoods} from '../food-actions';
 
@@ -13,17 +23,28 @@ const FoodList = () => {
 
   return (
     <Container>
-      <List>
-        {isLoading ? (
-          <Spinner color="crimson" />
-        ) : (
-          foods.map(f => (
-            <ListItem key={f.id}>
-              <Text>{f.name}</Text>
-            </ListItem>
-          ))
-        )}
-      </List>
+      <Content style={{margin: 20}} scrollEnable>
+        <List>
+          {isLoading ? (
+            <Spinner color="crimson" />
+          ) : (
+            foods.map(f => (
+              <ListItem
+                key={f.id}
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <Text>{f.name}</Text>
+                <Button danger onPress={() => console.log('ID: ', f.id)}>
+                  <Text>Delete</Text>
+                </Button>
+              </ListItem>
+            ))
+          )}
+        </List>
+      </Content>
     </Container>
   );
 };
