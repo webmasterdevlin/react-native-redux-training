@@ -141,16 +141,16 @@ export default function TodoList() {
                         style={{marginRight: 5}}
                         warning
                         onPress={() => handleEditOnPress(t)}>
-                        <Text>Edit</Text>
+                        <Icon type="FontAwesome5" name="pen" />
                       </Button>
                       <Button
                         style={{marginRight: 5}}
                         primary
                         onPress={() => navigate('todoDetail', {id: t})}>
-                        <Text>Detail</Text>
+                        <Icon type="FontAwesome5" name="info-circle" />
                       </Button>
                       <Button danger onPress={() => dispatch(removeTodo(t.id))}>
-                        <Text>X</Text>
+                        <Icon type="FontAwesome5" name="trash" />
                       </Button>
                     </View>
                   )}
