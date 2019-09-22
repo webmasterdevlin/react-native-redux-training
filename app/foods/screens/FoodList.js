@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Alert} from 'react-native';
 import {
   View,
@@ -26,18 +26,32 @@ const FoodList = () => {
   const dispatch = useDispatch();
   const {foods, isLoading} = useSelector(state => state.foodReducer);
 
+  /* React Hooks */
+  const [food, setFood] = useState({
+    name: '',
+  });
+
   useEffect(() => {
     dispatch(fetchFoods());
   }, []);
+
+  const handleOnChangeInput = input => {
+    const newFood = {...food};
+    newFood.name = input;
+
+    setFood(newFood);
+    console.log(newFood);
+    // TODO: dispatch the action here
+  };
 
   return (
     <Container>
       <View style={{marginLeft: 20, marginRight: 20}}>
         <Item floatingLabel>
           <Label>what's new</Label>
-          <Input />
+          <Input onChangeText={handleOnChangeInput} />
         </Item>
-        <Button success full onPress={() => Alert.alert('Saving..', 'ok')}>
+        <Button success full onPress={() => Alert.alert(food.name)}>
           <Text>Save</Text>
         </Button>
       </View>
