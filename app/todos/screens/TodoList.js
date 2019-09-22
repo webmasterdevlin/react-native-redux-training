@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchTodos, removeTodo} from '../todo-actions';
-import {StyleSheet, Alert} from 'react-native';
+import {StyleSheet, Alert, RefreshControl} from 'react-native';
 import {useNavigation} from 'react-navigation-hooks';
 import {
   Container,
@@ -30,6 +30,7 @@ export default function TodoList() {
   const {todos, isLoading} = useSelector(state => state.todoReducer);
 
   /* React Hooks */
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [todo, setTodo] = useState({title: ''}); // The new todo that will be sent to the web API
   const [forEditing, setForEditing] = useState(0); // For tracking which todo should be edited
   const [todoToUpdate, setTodoToUpdate] = useState({}); // the todo you've picked to edit
@@ -83,7 +84,24 @@ export default function TodoList() {
           <Text>Save</Text>
         </Button>
       </View>
-      <Content style={{margin: 20}} scrollEnable>
+      <Content
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={() => {
+              setIsRefreshing(true);
+              try {
+                dispatch(fetchTodos());
+              } catch (e) {
+              } finally {
+                setIsRefreshing(false);
+              }
+            }}
+            title="Loading..."
+          />
+        }
+        style={{margin: 20}}
+        scrollEnable>
         <List>
           {isLoading ? (
             <Spinner color="blue" />
